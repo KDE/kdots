@@ -20,6 +20,7 @@ find_package(KF5 REQUIRED COMPONENTS
   I18n
   Completion
   KDEGames
+  DocTools
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fexceptions")
