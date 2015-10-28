@@ -42,13 +42,13 @@ namespace simpleai
   {
     typedef boost::bimap<MapElement, QString> MapElementToStrType;
     const std::vector<MapElementToStrType::value_type> MAP_ELEMENT_TO_STR_VALUES = {
-      {MapElement::EM, "EM"},
-      {MapElement::NM, "NM"},
-      {MapElement::FI, "FI"},
-      {MapElement::SE, "SE"},
-      {MapElement::PF, "PF"},
-      {MapElement::PS, "PS"},
-      {MapElement::CU, "CU"}
+      {MapElement::EM, QStringLiteral("EM")},
+      {MapElement::NM, QStringLiteral("NM")},
+      {MapElement::FI, QStringLiteral("FI")},
+      {MapElement::SE, QStringLiteral("SE")},
+      {MapElement::PF, QStringLiteral("PF")},
+      {MapElement::PS, QStringLiteral("PS")},
+      {MapElement::CU, QStringLiteral("CU")}
     };
 
     const MapElementToStrType MAP_ELEMENT_TO_STR(MAP_ELEMENT_TO_STR_VALUES.begin(),
@@ -72,12 +72,12 @@ namespace simpleai
 
     for (const auto& row : m_map)
     {
-      res += "\n{ ";
+      res += QLatin1String("\n{ ");
       for (const auto& cell : row)
       {
         res += MAP_ELEMENT_TO_STR.left.at(cell) + " ";
       }
-      res += "}";
+      res += QLatin1String("}");
     }
 
     res += "\n" + QString::number(m_current.x()) + " " + QString::number(m_current.y()) + "\n";

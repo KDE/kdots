@@ -44,7 +44,7 @@ namespace simpleai
 
   QString Plugin::name() const
   {
-    return "simpleai";
+    return QStringLiteral("simpleai");
   }
 
   QString Plugin::description() const
@@ -54,7 +54,7 @@ namespace simpleai
   
   QIcon Plugin::icon() const
   {
-    return QIcon::fromTheme("games-config-board");
+    return QIcon::fromTheme(QStringLiteral("games-config-board"));
   }
 }
 }

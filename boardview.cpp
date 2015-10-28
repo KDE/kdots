@@ -62,8 +62,8 @@ namespace KDots
     m_model = model;
     
     connect(m_model, SIGNAL(pointAdded(const QPoint&)), this, SLOT(update()));
-    connect(m_model, SIGNAL(freezeView(bool)), this, SLOT(onFreezeView(bool)));
-    connect(m_model, SIGNAL(showMessage(const QString&)), this, SLOT(onShowMessage(const QString&)));
+    connect(m_model, &BoardModel::freezeView, this, &BoardView::onFreezeView);
+    connect(m_model, &BoardModel::showMessage, this, &BoardView::onShowMessage);
     
     m_height = m_model->gameConfig().m_height + 1;
     m_width = m_model->gameConfig().m_width + 1;

@@ -64,7 +64,7 @@ namespace singlepc
 
   QString Plugin::name() const
   {
-    return "singlepc";
+    return QStringLiteral("singlepc");
   }
 
   QString Plugin::description() const

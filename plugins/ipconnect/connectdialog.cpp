@@ -42,9 +42,9 @@ namespace ipconnect
     m_ui->setupUi(this);
     
     connect(server,
-        SIGNAL(newConnection()),
+        &QTcpServer::newConnection,
         this,
-        SLOT(accept()));
+        &QDialog::accept);
     
     if(m_server->listen(QHostAddress::Any, port))
       qDebug() << Q_FUNC_INFO << "Listening the port" << port;

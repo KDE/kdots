@@ -67,33 +67,33 @@ namespace KDots
     Kg::difficulty()->setEditable(false);
 
     initMenu();
-    setupGUI(Default, "kdotsui.rc");
+    setupGUI(Default, QStringLiteral("kdotsui.rc"));
   }
   
   void MainWindow::initMenu()
   {
     KStandardAction::preferences(this, SLOT(onPreferences()), actionCollection());
     
-    m_menu.m_newAction = new QAction(QIcon::fromTheme("file_new"), i18n("&New game"), this);
+    m_menu.m_newAction = new QAction(QIcon::fromTheme(QStringLiteral("file_new")), i18n("&New game"), this);
     actionCollection()->setDefaultShortcut(m_menu.m_newAction, Qt::CTRL + Qt::Key_N);
     
-    connect(m_menu.m_newAction, SIGNAL(triggered(bool)), this, SLOT(onNewGame())); 
+    connect(m_menu.m_newAction, &QAction::triggered, this, &MainWindow::onNewGame); 
 
-    actionCollection()->addAction("NewGame", m_menu.m_newAction);
+    actionCollection()->addAction(QStringLiteral("NewGame"), m_menu.m_newAction);
     
-    m_menu.m_endAction = actionCollection()->addAction("EndGame", this, SLOT(endGame()));
-    m_menu.m_endAction->setIcon(QIcon::fromTheme("window-close"));
+    m_menu.m_endAction = actionCollection()->addAction(QStringLiteral("EndGame"), this, SLOT(endGame()));
+    m_menu.m_endAction->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
     m_menu.m_endAction->setText(i18n("&End game"));
     actionCollection()->setDefaultShortcut(m_menu.m_endAction, Qt::CTRL + Qt::Key_E);
     m_menu.m_endAction->setEnabled(false);
     
-    m_menu.m_quitAction = actionCollection()->addAction("Quit", this, SLOT(close()));
-    m_menu.m_quitAction->setIcon(QIcon::fromTheme("exit"));
+    m_menu.m_quitAction = actionCollection()->addAction(QStringLiteral("Quit"), this, SLOT(close()));
+    m_menu.m_quitAction->setIcon(QIcon::fromTheme(QStringLiteral("exit")));
     m_menu.m_quitAction->setText(i18n("&Quit"));
     actionCollection()->setDefaultShortcut(m_menu.m_quitAction, Qt::CTRL + Qt::Key_Q);
     
-    m_menu.m_undoAction = actionCollection()->addAction("UndoGame", this);
-    m_menu.m_undoAction->setIcon(QIcon::fromTheme("undo"));
+    m_menu.m_undoAction = actionCollection()->addAction(QStringLiteral("UndoGame"), this);
+    m_menu.m_undoAction->setIcon(QIcon::fromTheme(QStringLiteral("undo")));
     m_menu.m_undoAction->setText(i18n("&Undo"));
     m_menu.m_undoAction->setEnabled(false);
     actionCollection()->setDefaultShortcut(m_menu.m_undoAction, Qt::CTRL + Qt::Key_Z);
@@ -122,7 +122,7 @@ namespace KDots
     Ui::BoardConfigWidget *boardUi = new Ui::BoardConfigWidget;
     boardUi->setupUi(board);
       
-    dialog.addPage(board, i18n("Board"), QLatin1String("games-config-options"));
+    dialog.addPage(board, i18n("Board"), QStringLiteral("games-config-options"));
     
     if (dialog.exec() == QDialog::Accepted)
       emit preferencesUpdated();
@@ -156,16 +156,16 @@ namespace KDots
     auto rival = std::move(dialog.rival());
     
     connect(Kg::difficulty(),
-        SIGNAL(currentLevelChanged(const KgDifficultyLevel*)),
+        &KgDifficulty::currentLevelChanged,
         rival.get(),
-        SLOT(onDifficultyChanged(const KgDifficultyLevel*)));
+        &IRival::onDifficultyChanged);
     
     m_menu.m_undoAction->setEnabled(rival->canUndo());
     
     connect(rival.get(), SIGNAL(needDestroy()), this, SLOT(onNeedDestroy()));
     
     m_model = std::unique_ptr<BoardModel>(new BoardModel(config, createStepQueue(config)));
-    connect(m_menu.m_undoAction, SIGNAL(triggered(bool)), m_model.get(), SLOT(undo()));
+    connect(m_menu.m_undoAction, &QAction::triggered, m_model.get(), &BoardModel::undo);
     connect(m_model.get(), SIGNAL(statusUpdated(const QString&)), statusBar(), SLOT(showMessage(const QString&)));
     
     {

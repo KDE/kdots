@@ -65,7 +65,7 @@ namespace KDots
   bool PluginLoader::findPlugin(const QDir& pluginsDir)
   {
     bool foundFlag = false;
-    for (const QString& fileName : pluginsDir.entryList({PLUGIN_PREFIX + QLatin1String("*")}, QDir::Files))
+    for (const QString& fileName : pluginsDir.entryList({PLUGIN_PREFIX + QStringLiteral("*")}, QDir::Files))
     {
       QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
       IPlugin *iplugin = qobject_cast<IPlugin *>(pluginLoader.instance());
@@ -89,7 +89,7 @@ namespace KDots
 
   void PluginLoader::loadPlugins()
   {
-    QDir libdir(QLatin1String(PLUGINS_DIR));
+    QDir libdir(QStringLiteral(PLUGINS_DIR));
     if (!libdir.exists() || !findPlugin(libdir))
       qWarning() << "Plugins not found in " << libdir.absolutePath();
   }

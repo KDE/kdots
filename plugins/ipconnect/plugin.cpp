@@ -45,7 +45,7 @@ namespace ipconnect
 
   QString Plugin::name() const
   {
-    return "ipconnect";
+    return QStringLiteral("ipconnect");
   }
 
   QString Plugin::description() const
@@ -55,7 +55,7 @@ namespace ipconnect
   
   QIcon Plugin::icon() const
   {
-    return QIcon::fromTheme("network-connect");
+    return QIcon::fromTheme(QStringLiteral("network-connect"));
   }
 }
 }

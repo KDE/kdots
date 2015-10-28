@@ -69,7 +69,7 @@ namespace KDots
       const QIcon& plugIcon = plug->icon();
       if (plugIcon.isNull())
       {
-        const QIcon newIcon(QIcon::fromTheme("applications-boardgames"));
+        const QIcon newIcon(QIcon::fromTheme(QStringLiteral("applications-boardgames")));
         drawIcon(painter, option, newIcon);
       }
       else

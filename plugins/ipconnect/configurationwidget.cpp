@@ -45,7 +45,7 @@ namespace ipconnect
   {
     m_ui->setupUi(this);
     
-    connect(m_ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
+    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &ConfigurationWidget::onTabChanged);
   }
   
   void ConfigurationWidget::requestState()

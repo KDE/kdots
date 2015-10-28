@@ -89,7 +89,7 @@ namespace ipconnect
     
     //Joining Game
     m_socket = new QTcpSocket(this);
-    connect(m_socket, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
+    connect(m_socket, &QAbstractSocket::disconnected, this, &Rival::onDisconnected);
     
     m_socket->connectToHost(config.m_host, config.m_port);
 
@@ -124,7 +124,7 @@ namespace ipconnect
         }
         else
         {
-          connect(m_socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+          connect(m_socket, &QIODevice::readyRead, this, &Rival::onReadyRead);
           
           KMessageBox::information(0,
               i18n("Connected"),
@@ -161,7 +161,7 @@ namespace ipconnect
     m_server = new QTcpServer(this);
     m_server->setMaxPendingConnections(1);
 
-    connect(m_server, SIGNAL(newConnection()), this, SLOT(onNewConnectionHandle()));
+    connect(m_server, &QTcpServer::newConnection, this, &Rival::onNewConnectionHandle);
     
     ConnectDialog dialog(m_server, config.m_port);
     if (dialog.exec() != QDialog::Accepted)
@@ -207,8 +207,8 @@ namespace ipconnect
         << static_cast<quint32>(StepQueue::other(m_me));
     m_socket->write(gameData);
     qWarning() << "Game config sent";
-    connect(m_socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
-    connect(m_socket, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
+    connect(m_socket, &QIODevice::readyRead, this, &Rival::onReadyRead);
+    connect(m_socket, &QAbstractSocket::disconnected, this, &Rival::onDisconnected);
   }
 
   void Rival::onReadyRead()

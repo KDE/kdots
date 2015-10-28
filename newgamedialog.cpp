@@ -51,7 +51,7 @@ namespace KDots
       
     m_ui->Grid->addWidget(m_pluginManager, 0, 0);
     
-    connect(m_ui->NextButton, SIGNAL(clicked(bool)), this, SLOT(pluginWidget()));
+    connect(m_ui->NextButton, &QAbstractButton::clicked, this, &NewGameDialog::pluginWidget);
     m_ui->NextButton->setFocus();
   }
   
@@ -129,7 +129,7 @@ namespace KDots
     
     connect(m_configWidget, SIGNAL(needCreateBoard(bool)), this, SLOT(onNeedCreateBoard(bool)));
     
-    connect(m_ui->NextButton, SIGNAL(clicked(bool)), this, SLOT(gameWidget()));
+    connect(m_ui->NextButton, &QAbstractButton::clicked, this, &NewGameDialog::gameWidget);
     
     m_configWidget->requestState();
   }
@@ -140,7 +140,7 @@ namespace KDots
     m_ui->NextButton->setEnabled(val);
     m_ui->OKButton->setEnabled(m_needCreateBoard);
     if (val)
-      connect(m_ui->NextButton, SIGNAL(clicked(bool)), this, SLOT(gameWidget()));
+      connect(m_ui->NextButton, &QAbstractButton::clicked, this, &NewGameDialog::gameWidget);
     else
       m_ui->NextButton->disconnect(this, SLOT(gameWidget()));
   }

@@ -36,29 +36,29 @@
 
 void initAboutData(KAboutData& aboutData)
 {
-  aboutData.setHomepage("https://github.com/Ignotus/kdots");
+  aboutData.setHomepage(QStringLiteral("https://github.com/Ignotus/kdots"));
   aboutData.setBugAddress("minh@fedoraproject.org");
-  aboutData.addAuthor("Minh Ngo",
+  aboutData.addAuthor(QStringLiteral("Minh Ngo"),
       i18n("Architecture. Project Management"),
-      "minh@fedoraproject.org",
-      "http://fedoraproject.org/~minh/");
+      QStringLiteral("minh@fedoraproject.org"),
+      QStringLiteral("http://fedoraproject.org/~minh/"));
 
-  aboutData.addCredit("Bohdan Rybak",
+  aboutData.addCredit(QStringLiteral("Bohdan Rybak"),
       i18n("Game engine tester"),
-      "brainerazer@gmail.com");
+      QStringLiteral("brainerazer@gmail.com"));
 
-  aboutData.addCredit("Artem Sereda",
+  aboutData.addCredit(QStringLiteral("Artem Sereda"),
       i18n("Arch Linux package maintainer"),
-      "overmind88@gmail.com");
+      QStringLiteral("overmind88@gmail.com"));
 }
 
 int main(int argc, char **argv)
 {
-  KAboutData aboutData(QLatin1String("kdots"),
-    QLatin1String("kdots"), VERSION,
+  KAboutData aboutData(QStringLiteral("kdots"),
+    QStringLiteral("kdots"), VERSION,
     i18n("A prototype of the game of dots."),
     KAboutLicense::BSDL,
-    QLatin1String("Copyright(c) 2011, 2012, 2014, 2015 Minh Ngo"));
+    QStringLiteral("Copyright(c) 2011, 2012, 2014, 2015 Minh Ngo"));
 
   initAboutData(aboutData);
 

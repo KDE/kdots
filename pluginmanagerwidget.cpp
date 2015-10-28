@@ -61,9 +61,9 @@ namespace KDots
     m_ui->PluginList->setSelectionMode(QAbstractItemView::SingleSelection);
     m_ui->PluginList->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(m_ui->PluginList,
-        SIGNAL(clicked(const QModelIndex&)),
+        &QAbstractItemView::clicked,
         this,
-        SLOT(onIndexChanged(const QModelIndex&)));
+        &PluginManagerWidget::onIndexChanged);
     
     const QModelIndex& index =model->index(0, 0);
     m_ui->PluginList->selectionModel()->select(index, QItemSelectionModel::Select);

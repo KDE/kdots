@@ -233,8 +233,8 @@ namespace KDots
     Q_D(BoardModel);
     d->m_rival = std::move(rival);
 
-    connect(this, SIGNAL(pointAdded(const QPoint&)),
-            d->m_rival.get(), SLOT(onPointAdded(const QPoint&)));
+    connect(this, &BoardModel::pointAdded,
+            d->m_rival.get(), &IRival::onPointAdded);
     connect(d->m_rival.get(), SIGNAL(needAddPoint(const QPoint&)),
             d, SLOT(addPoint(const QPoint&)));
 
