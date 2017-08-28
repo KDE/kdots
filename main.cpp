@@ -55,6 +55,7 @@ void initAboutData(KAboutData& aboutData)
 int main(int argc, char **argv)
 {
   QApplication app(argc, argv);
+  KLocalizedString::setApplicationDomain("kdots");
   KAboutData aboutData(QStringLiteral("kdots"),
     QStringLiteral("kdots"), VERSION,
     i18n("A prototype of the game of dots."),
