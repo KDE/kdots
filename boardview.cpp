@@ -29,6 +29,7 @@
 #include <vector>
 
 #include <QPainter>
+#include <QPainterPath>
 #include <QMouseEvent>
 #include <QPaintEvent>
 
